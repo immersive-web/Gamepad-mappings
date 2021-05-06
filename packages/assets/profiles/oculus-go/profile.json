@@ -1,0 +1,9 @@
+{
+    "profileId" : "oculus-go",
+    "overrides" : {
+        "left-right": {
+            "rootNodeName": "oculus_go_none",
+            "assetPath": "none.glb"
+        }
+    }
+}

@@ -1,0 +1,91 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.leftSide {
+  width: calc(50% - 2em);
+  padding: 1em;
+}
+
+.rightSide {
+  height: 100vh;
+  position: absolute;
+  width: 50%;
+  right: 0;
+  top: 0;
+}
+
+section {
+  margin-bottom: 1em;
+}
+
+.instructions {
+  padding-bottom: .7em;
+}
+
+.instructions summary {
+    font-weight: bold;
+    list-style-type: none;
+}
+
+.instructions #title {
+  text-decoration: underline;
+}
+
+.instructions #title::before {
+  content: "Show "
+}
+
+.instructions details[open] #title::before {
+  content: "Hide "
+}
+
+.instructions p {
+  padding-top: .4em;
+  padding-left: .5em;
+  padding-right: .5em;
+}
+
+#localFilesList {
+  margin-top: .5em;
+  margin-left: .5em;
+  list-style: inside;
+}
+
+.component {
+  border: 1px dashed black;
+  list-style: none;
+  margin-top: .25em;
+  margin-bottom: .25em;
+  padding: .5em;
+  display: grid;
+}
+
+.component h4, div {
+  grid-column: 1;
+}
+
+.component pre {
+  grid-column: 2;
+  grid-row: 1 / 4;
+}
+
+#errors {
+  background-color: white;
+  border: solid black;
+  color: red;
+  margin: .5em;
+  margin-bottom: 1em;
+}
+
+#errors ul {
+  margin: 0.5em;
+  list-style-position: inside;
+}
+
+#backgrounds {
+  position: absolute;
+  z-index: 2;
+  margin: 1em;
+}

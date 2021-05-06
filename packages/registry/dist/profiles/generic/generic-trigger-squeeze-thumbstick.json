@@ -1,0 +1,29 @@
+{
+    "profileId": "generic-trigger-squeeze-thumbstick",
+    "fallbackProfileIds": [],
+    "layouts" : {
+        "left-right-none" : {
+            "selectComponentId": "xr-standard-trigger",
+            "components": {
+                "xr-standard-trigger": { "type": "trigger" },
+                "xr-standard-squeeze": { "type": "squeeze" },
+                "xr-standard-thumbstick": { "type": "thumbstick" }
+            },
+            "gamepad":{
+                "mapping": "xr-standard",
+                "buttons": [ 
+                    "xr-standard-trigger", 
+                    "xr-standard-squeeze", 
+                    null,
+                    "xr-standard-thumbstick" 
+                ],
+                "axes":[
+                    null,
+                    null,
+                    { "componentId": "xr-standard-thumbstick", "axis": "x-axis"},
+                    { "componentId": "xr-standard-thumbstick", "axis": "y-axis"}
+                ]
+            }
+        }
+    }
+}

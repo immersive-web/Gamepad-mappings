@@ -1,0 +1,24 @@
+{
+  "name": "@webxr-input-profiles/viewer",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A viewer",
+  "main": "dist/index.js",
+  "files": [
+    "package.json",
+    "LICENSE",
+    "README.md",
+    "dist/**"
+  ],
+  "scripts": {
+    "clean": "node -e \"try { require('fs').rmdirSync('./dist', { recursive: true }); } catch {}\"",
+    "build": "rollup -c -m inline",
+    "cleanBuild": "npm run clean && npm run build",
+    "watch": "rollup -c -w -m inline",
+    "test": "echo \"Run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@webxr-input-profiles/assets": "^1.0.0",
+    "@webxr-input-profiles/motion-controllers": "^1.0.0"
+  }
+}

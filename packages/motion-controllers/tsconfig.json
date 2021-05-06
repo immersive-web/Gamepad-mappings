@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "allowJs": true,
+    "checkJs": true,
+    "target": "ES5"
+  },
+  "include": ["./src/*.d.ts", "./src/__tests__/*.js"],
+}

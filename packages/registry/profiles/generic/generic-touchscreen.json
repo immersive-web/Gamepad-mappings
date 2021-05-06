@@ -1,0 +1,24 @@
+{
+    "profileId" : "generic-touchscreen",
+    "fallbackProfileIds": [],
+    "layouts" : {
+        "none" : {
+            "selectComponentId": "touchscreen",
+            "components": {
+                "touchscreen": { "type": "touchpad" }
+            },
+            "gamepad": {
+                "mapping": "",
+                "buttons": [
+                    null,
+                    null,
+                    "touchscreen"
+                ],
+                "axes":[
+                    { "componentId": "touchscreen", "axis": "x-axis"},
+                    { "componentId": "touchscreen", "axis": "y-axis"}
+                ]
+            }
+        }
+    }
+}

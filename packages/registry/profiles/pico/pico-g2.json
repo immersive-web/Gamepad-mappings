@@ -1,0 +1,26 @@
+{
+  "profileId": "pico-g2",
+  "fallbackProfileIds": [ "generic-trigger-touchpad"],
+  "layouts": {
+      "left-right-none": {
+          "selectComponentId": "xr-standard-trigger",
+          "components": {
+              "xr-standard-trigger": { "type": "trigger" },
+              "xr-standard-touchpad": { "type": "touchpad" }
+          },
+          "gamepad": {
+              "mapping": "xr-standard",
+              "buttons": [
+                  "xr-standard-trigger",
+                  null,
+                  "xr-standard-touchpad"
+              ],
+              "axes":[
+                  { "componentId": "xr-standard-touchpad", "axis": "x-axis"},
+                  { "componentId": "xr-standard-touchpad", "axis": "y-axis"}
+              ]
+
+          }
+      }
+  }
+}

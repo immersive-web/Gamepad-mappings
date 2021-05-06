@@ -1,0 +1,9 @@
+{
+    "profileId" : "google-daydream",
+    "overrides" : {
+        "left-right": {
+            "rootNodeName": "google_daydream_none",
+            "assetPath": "none.glb"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "profileId" : "htc-vive",
+    "overrides" : {
+        "left-right": {
+            "rootNodeName": "htc_vive_none",
+            "assetPath": "none.glb"
+        }
+    }
+}

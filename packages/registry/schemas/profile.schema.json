@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://immersive-web/webxr-input-profiles/registry/profile.schema.json",
+    "type": "object",
+    "description": "The root object for an XRInputSource profile.",
+    "additionalProperties": true,
+    "required": [ "profileId", "fallbackProfileIds", "layouts"],
+    "properties": {
+        "profileId" : { "$ref": "common.schema.json#/definitions/profileId" },
+        "fallbackProfileIds" : {
+            "type": "array",
+            "items": { "$ref": "common.schema.json#/definitions/profileId" },
+            "uniqueItems": true
+        },
+        "deprecatedProfileIds" : {
+            "type": "array",
+            "items": { "$ref": "common.schema.json#/definitions/profileId" },
+            "uniqueItems": true
+        },
+        "layouts" : {
+            "type": "object",
+            "additionalProperties": false,
+            "minProperties": 1,
+            "properties": {
+                "none": { "$ref": "layout.schema.json" },
+                "left": { "$ref": "layout.schema.json" },
+                "right": { "$ref": "layout.schema.json" },
+                "left-right": { "$ref": "layout.schema.json" },
+                "left-right-none": { "$ref": "layout.schema.json" }
+            },
+            "dependencies": {
+                "left-right-none": { "not": { "required": ["none", "left", "right", "left-right"] } },
+                "left-right": { "not": { "required": ["left", "right", "left-right-none"] } },
+                "left": { "required": ["right"], "not": { "required": ["left-right", "left-right-none"] } },
+                "right": { "required": ["left"], "not": { "required": ["left-right", "left-right-none"] } },
+                "none": { "not": { "required": ["left-right-none"] } }
+            }
+        }
+    }
+}

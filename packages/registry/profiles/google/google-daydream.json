@@ -1,0 +1,22 @@
+{
+    "profileId" : "google-daydream",
+    "fallbackProfileIds": ["generic-touchpad"],
+    "layouts" : {
+        "left-right-none" : {
+            "selectComponentId": "touchpad",
+            "components": {
+                "touchpad": { "type": "touchpad" }
+            },
+            "gamepad": {
+                "mapping": "",
+                "buttons": [ 
+                    "touchpad"
+                ],
+                "axes":[
+                    { "componentId": "touchpad", "axis": "x-axis"},
+                    { "componentId": "touchpad", "axis": "y-axis"}
+                ]
+            }
+        }
+    }
+}

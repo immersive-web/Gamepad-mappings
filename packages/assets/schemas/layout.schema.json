@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://immersive-web/webxr-input-profiles/assets/0.1.0/layout.schema.json",
+    "type": "object",
+    "additionalProperties": false,
+    "minProperties": 1,
+    "properties": {
+        "rootNodeName": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(_[a-z0-9]+)*$"
+        },
+        "assetPath": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*\\.glb$"
+        },
+        "components": {
+            "description": "The collection of components in the layout",
+            "type": "object",
+            "additionalProperties": false,
+            "minProperties": 1,
+            "patternProperties": {
+                "^[a-z0-9]+(-[a-z0-9]+)*$": {
+                    "type": "object",
+                    "description": "Component description",
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                        "rootNodeName": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+                        },
+                        "touchPointNodeName": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+                        },
+                        "visualResponses": { "$ref": "visualResponses.schema.json"}
+                    }
+                }
+            }
+        }
+    }
+}

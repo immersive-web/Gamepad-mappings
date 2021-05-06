@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://immersive-web/webxr-input-profiles/assets/0.1.0/visualResponses.schema.json",
+    "type": "object",
+    "description": "The visual responses",
+    "additionalProperties": false,
+    "minProperties": 1,
+    "patternProperties": {
+        "^[a-z0-9]+(_[a-z0-9]+)*$": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "object",
+                    "required": ["componentProperty", "states", "valueNodeProperty"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "componentProperty": {
+                            "description": "The property name driving this visualization",
+                            "type": "string",
+                            "enum": ["x-axis", "y-axis", "button", "state"]
+                        },
+                        "states": {
+                            "description": "The states the visualization applies to",
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "type": "string",
+                                "enum": ["default", "touched", "pressed"]
+                            }
+                        },
+                        "valueNodeProperty": {
+                            "type": "string",
+                            "enum": ["transform", "visibility"]
+                        }
+                    },
+                    "if": {
+                        "properties": {
+                            "componentProperty": { "enum":["state"] }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "property": {
+                                "type": "string",
+                                "enum": ["transform", "visibility"]
+                            }
+                        }
+                    },
+                    "else": {
+                        "properties": {
+                            "property": {
+                                "type": "string",
+                                "enum": ["transform"]
+                            }
+                        }
+                    }       
+                }
+            ]
+        }
+    }
+}

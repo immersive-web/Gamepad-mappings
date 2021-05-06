@@ -1,0 +1,99 @@
+{
+  "generic-button": {
+    "path": "generic/generic-button.json"
+  },
+  "generic-hand-select-grasp": {
+    "path": "generic/generic-hand-select-grasp.json"
+  },
+  "generic-hand-select": {
+    "path": "generic/generic-hand-select.json"
+  },
+  "generic-hand": {
+    "path": "generic/generic-hand.json"
+  },
+  "generic-touchpad": {
+    "path": "generic/generic-touchpad.json"
+  },
+  "generic-touchscreen": {
+    "path": "generic/generic-touchscreen.json"
+  },
+  "generic-trigger-squeeze-thumbstick": {
+    "path": "generic/generic-trigger-squeeze-thumbstick.json"
+  },
+  "generic-trigger-squeeze-touchpad-thumbstick": {
+    "path": "generic/generic-trigger-squeeze-touchpad-thumbstick.json"
+  },
+  "generic-trigger-squeeze-touchpad": {
+    "path": "generic/generic-trigger-squeeze-touchpad.json"
+  },
+  "generic-trigger-squeeze": {
+    "path": "generic/generic-trigger-squeeze.json"
+  },
+  "generic-trigger-thumbstick": {
+    "path": "generic/generic-trigger-thumbstick.json"
+  },
+  "generic-trigger-touchpad-thumbstick": {
+    "path": "generic/generic-trigger-touchpad-thumbstick.json"
+  },
+  "generic-trigger-touchpad": {
+    "path": "generic/generic-trigger-touchpad.json"
+  },
+  "generic-trigger": {
+    "path": "generic/generic-trigger.json"
+  },
+  "google-daydream": {
+    "path": "google/google-daydream.json"
+  },
+  "hp-mixed-reality": {
+    "path": "hp/hp-mixed-reality.json"
+  },
+  "htc-vive-cosmos": {
+    "path": "htc/htc-vive-cosmos.json"
+  },
+  "htc-vive-focus-plus": {
+    "path": "htc/htc-vive-focus-plus.json"
+  },
+  "htc-vive-focus": {
+    "path": "htc/htc-vive-focus.json"
+  },
+  "htc-vive": {
+    "path": "htc/htc-vive.json"
+  },
+  "magicleap-one": {
+    "path": "magicleap/magicleap-one.json"
+  },
+  "microsoft-mixed-reality": {
+    "path": "microsoft/microsoft-mixed-reality.json"
+  },
+  "windows-mixed-reality": {
+    "path": "microsoft/microsoft-mixed-reality.json",
+    "deprecated": true
+  },
+  "oculus-go": {
+    "path": "oculus/oculus-go.json"
+  },
+  "oculus-touch-v2": {
+    "path": "oculus/oculus-touch-v2.json"
+  },
+  "oculus-touch-v3": {
+    "path": "oculus/oculus-touch-v3.json"
+  },
+  "oculus-touch": {
+    "path": "oculus/oculus-touch.json"
+  },
+  "pico-g2": {
+    "path": "pico/pico-g2.json"
+  },
+  "pico-neo2": {
+    "path": "pico/pico-neo2.json"
+  },
+  "samsung-gearvr": {
+    "path": "samsung/samsung-gearvr.json"
+  },
+  "samsung-odyssey": {
+    "path": "samsung/samsung-odyssey.json"
+  },
+  "valve-index": {
+    "path": "valve/valve-index.json"
+  }
+}

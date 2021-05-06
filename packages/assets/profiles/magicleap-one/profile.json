@@ -1,0 +1,9 @@
+{
+  "profileId" : "magicleap-one",
+  "overrides" : {
+    "left-right": {
+        "rootNodeName": "magicleap_one_none",
+        "assetPath": "none.glb"
+    }
+  }
+}

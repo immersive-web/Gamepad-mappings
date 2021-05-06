@@ -1,0 +1,55 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "airbnb-base"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+        "linebreak-style": ["warn", "unix"],
+        "comma-dangle": ["error", "never"],
+        "import/no-extraneous-dependencies": ["error", {"packageDir": "./"}],
+        "import/prefer-default-export": ["none"]
+    },
+    "overrides": [
+        {
+            "files": [
+                "**/__tests__/**"
+            ],
+            "env": {
+                "jest": true
+            },
+            "plugins": ["jest"],
+            "globals": {
+                "expect": true,
+                "test": true,
+                "describe": true,
+                "beforeAll": true,
+                "beforeEach": true,
+                "TestHelpers": "readonly"
+            },
+            "rules": {
+                "jest/no-disabled-tests": "warn",
+                "jest/no-focused-tests": "error",
+                "jest/no-identical-title": "error",
+                "jest/prefer-to-have-length": "warn",
+                "jest/valid-expect": "error",
+                "import/no-extraneous-dependencies": [
+                    "error", 
+                    {
+                        "packageDir": ["./packages/motion-controllers/", "./"]
+                    }
+                ]
+            }
+        }
+    ]
+}

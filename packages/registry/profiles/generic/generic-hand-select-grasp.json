@@ -1,0 +1,24 @@
+{
+    "profileId" : "generic-hand-select-grasp",
+    "fallbackProfileIds": ["generic-hand-select"],
+    "layouts" : {
+        "left-right-none" : {
+            "selectComponentId": "xr-standard-trigger",
+            "components": {
+                "xr-standard-trigger": { "type": "trigger" },
+                "grasp": { "type": "trigger" }
+            },
+            "gamepad": {
+                "mapping": "xr-standard",
+                "buttons": [
+                    "xr-standard-trigger",
+                    null,
+                    null,
+                    null,
+                    "grasp"
+                ],
+                "axes":[]
+            }
+        }
+    }
+}

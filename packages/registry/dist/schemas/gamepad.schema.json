@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://immersive-web/webxr-input-profiles/registry/gamepad.schema.json",
+    "type": "object",
+    "description": "The alignment of components to gamepad indices",
+    "additionalProperties": false,
+    "required": [ "mapping", "buttons", "axes" ],
+    "properties": {
+        "mapping": {
+            "description": "The Gamepad.mapping value",
+            "type": "string",
+            "enum": [ "", "xr-standard"]
+        },
+        "buttons": {
+            "description": "An array that maps to the entries in the Gamepad's buttons array",
+            "type": "array",
+            "items": { 
+                "oneOf": [
+                    { "type": "null" },
+                    { "$ref": "common.schema.json#/definitions/componentId" }
+                ]
+            }
+        },
+        "axes": {
+            "description": "An array that maps to the entries in the Gamepad's axes array",
+            "type": "array",
+            "items": { 
+                "oneOf": [
+                    {
+                        "type": "null"
+                    },
+                    { 
+                        "description": "A description of which component and which axis on that component is represented by this entry in the Gamepad's axes array",
+                        "type": "object",
+                        "required": [ "componentId", "axis" ],
+                        "properties": {
+                            "componentId": { "$ref": "common.schema.json#/definitions/componentId" },
+                            "axis": {
+                                "type": "string",
+                                "enum": [ "x-axis", "y-axis"]
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

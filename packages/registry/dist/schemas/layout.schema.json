@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://immersive-web/webxr-input-profiles/registry/layout.schema.json",
+    "type": "object",
+    "description": "A layout",
+    "additionalProperties": false,
+    "required": [ "components", "selectComponentId" ],
+    "properties": {
+        "selectComponentId": { "$ref": "common.schema.json#/definitions/componentId" },
+        "components": { 
+            "description": "The collection of components in the layout",
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[a-z0-9]+(-[a-z0-9]+)*$": {
+                    "type": "object",
+                    "required": [ "type" ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [ "trigger", "squeeze", "touchpad", "thumbstick", "button"]
+                        },
+                        "reserved": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
+        },
+        "gamepad": { "#ref": "gamepad.schema.json" }
+    }
+}

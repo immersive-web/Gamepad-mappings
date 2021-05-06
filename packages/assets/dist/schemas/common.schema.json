@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://immersive-web/webxr-input-profiles/assets/0.1.0/common.schema.json",
+    "definitions": {
+        "profileId": {
+            "description": "A properly formatted string uniquely identifying a profile",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)+$"
+        },
+        "componentId": {
+            "description": "A well-formatted component id",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(_[a-z0-9]+)*$"
+        }
+    }
+}

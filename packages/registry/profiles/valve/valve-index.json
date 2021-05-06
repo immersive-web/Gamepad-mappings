@@ -1,0 +1,33 @@
+{
+    "profileId": "valve-index",
+    "fallbackProfileIds": [ "generic-trigger-squeeze-touchpad-thumbstick"],
+    "layouts": {
+        "left-right": {
+            "selectComponentId": "xr-standard-trigger",
+            "components": {
+                "xr-standard-trigger": { "type": "trigger" },
+                "xr-standard-squeeze": { "type": "squeeze" },
+                "xr-standard-touchpad": { "type": "touchpad" },
+                "xr-standard-thumbstick": { "type": "thumbstick" },
+                "a-button" : { "type": "button" },
+                "b-button" : { "type": "button", "reserved": true }
+            },
+            "gamepad": {
+                "mapping": "xr-standard",
+                "buttons": [
+                    "xr-standard-trigger",
+                    "xr-standard-squeeze",
+                    "xr-standard-touchpad",
+                    "xr-standard-thumbstick",
+                    "a-button"
+                ],
+                "axes":[
+                    { "componentId": "xr-standard-touchpad", "axis": "x-axis"},
+                    { "componentId": "xr-standard-touchpad", "axis": "y-axis"},
+                    { "componentId": "xr-standard-thumbstick", "axis": "x-axis"},
+                    { "componentId": "xr-standard-thumbstick", "axis": "y-axis"}
+                ]
+            }
+        }
+    }
+}

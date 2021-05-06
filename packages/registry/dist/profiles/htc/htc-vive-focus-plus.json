@@ -1,0 +1,28 @@
+{
+    "profileId": "htc-vive-focus-plus",
+    "fallbackProfileIds": [ "generic-trigger-squeeze-touchpad"],
+    "layouts" : {
+        "left-right-none" : {
+            "selectComponentId": "xr-standard-trigger",
+            "components": {
+                "xr-standard-trigger": { "type": "trigger" },
+                "xr-standard-squeeze": { "type": "squeeze" },
+                "xr-standard-touchpad": { "type": "touchpad" },
+                "menu" : { "type": "button", "reserved": true }
+            },
+            "gamepad" : {
+                "mapping": "xr-standard",
+                "buttons": [
+                    "xr-standard-trigger",
+                    "xr-standard-squeeze",
+                    "xr-standard-touchpad",
+                    null
+                ],
+                "axes":[
+                    { "componentId": "xr-standard-touchpad", "axis": "x-axis"},
+                    { "componentId": "xr-standard-touchpad", "axis": "y-axis"}
+                ]
+            }
+        }
+    }
+}

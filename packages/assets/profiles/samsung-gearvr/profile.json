@@ -1,0 +1,9 @@
+{
+    "profileId" : "samsung-gearvr",
+    "overrides" : {
+        "left-right": {
+            "rootNodeName": "samsung_gearvr_none",
+            "assetPath": "none.glb"
+        }
+    }
+}

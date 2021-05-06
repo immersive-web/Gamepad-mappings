@@ -1,0 +1,9 @@
+{
+    "profileId" : "htc-vive-focus",
+    "overrides" : {
+        "left-right": {
+            "rootNodeName": "htc_vive_focus_none",
+            "assetPath": "none.glb"
+        }
+    }
+}

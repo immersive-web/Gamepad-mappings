@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>WebXR Input Profile Viewer</title>
+        <script type="module" src="./modelViewer.js"></script>
+        <link rel="stylesheet" type="text/css" href="./profileViewer.css" />
+    </head>
+    <body>
+        <main>
+            <div class="leftSide">
+                <h1>WebXR Input Profile Viewer</h1>
+                <section class="instructions">
+                    <details>
+                        <summary>&#x24D8 <span id="title">instructions</span></summary>
+                        <p>The dropdown on the left side of this page allows for manually testing all profiles with 3D assets available in the <a href="https://github.com/immersive-web/webxr-input-profiles">webxr-input-profiles repository</a>. A profile from the local file system can also be tested by selecting the relevant files in "Local Profile" file selector. These files must include a hardware description JSON file conforming to the requirements in the <a href="https://github.com/immersive-web/webxr-input-profiles/tree/main/packages/registry">@webxr-input-profiles/registry</a> package, at least one matching 3D asset which conforms to the requirements in the <a href="https://github.com/immersive-web/webxr-input-profiles/tree/main/packages/assets">@webxr-input-profiles/assets</a> package, and, optionally, an asset description override JSON file that also conforms to the requirements in the <a href="https://github.com/immersive-web/webxr-input-profiles/tree/main/packages/assets">@webxr-input-profiles/assets</a> package.  When entering VR, the best matched 3D assets for the currently connected XR hardware will be shown and animated. The locally loaded profile will be used if it is the best match.
+                        <p>Source code for this sample page, which happens to be written in three.js, can be found in the <a href="https://github.com/immersive-web/webxr-input-profiles/tree/main/packages/viewer">@webxr-input-profiles/viewer</a> package.  However, very little of the code is specific to three.js. Other engines can adopt the same functionality by integrating with the <a href="https://github.com/immersive-web/webxr-input-profiles/tree/main/packages/motion-controllers">@webxr-input-profiles/motion-controllers</a> package.
+                    </details>
+                </section>
+                <section id="selectors">
+                    <label for="profileIdSelector">Select profile</label>
+                    <select id="profileIdSelector"></select>
+                    <select id="handednessSelector"></select>
+                    <br>
+                    <label for="localFilesSelector">Select local files</label>
+                    <input id="localFilesSelector" type="file" multiple>
+                    <br>
+                    <label for="forceVRProfile">Force the selected profile to be used in VR</label>
+                    <input type="checkbox" id="forceVRProfile"></input>
+                    <br>
+                    <label for="forceVRProfile">Show target ray in VR</label>
+                    <input type="checkbox" id="showTargetRay"></input>
+                    <br>
+                    <ul id="localFilesList"></ul>
+                </section>
+                <section id="errors" hidden="true">
+                    <ul id="errorsList"></ul>
+                </section>
+                <section id="vrProfiles" hidden="true">
+                    XRInputSource profiles observed during last VR session:
+                    <ul id="vrProfilesList"></ul>
+                </section>
+                <section id="controls">
+                    <ul id="controlsList">
+                    </ul>
+                </section>
+            </div>
+            <section class="rightSide" id="modelViewer">
+                <section id="backgrounds">
+                    <label for="backgroundSelector">Background</label>
+                    <select id="backgroundSelector"></select>
+                </section>
+
+            </section>
+        </main>
+    </body>
+</html>

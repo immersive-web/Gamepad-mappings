@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>WebXR Input Profile Asset Stats</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  </head>
+  <body>
+    <h1>WebXR Input Profile Asset Stats</h1>
+    <p>
+      This page shows basic stats for recent asset requests from the
+      <a href='https://cdn.jsdelivr.net/npm/@webxr-input-profiles/assets@1.0/dist/profiles/'>jsdelivr CDN</a>,
+      which several libraries and sites use for delivering WebXR input profile assets. The stats on this page should
+      not be seen as a giving a full representation of any aspect of WebXR usage, but may offer some insight into
+      broader trends in device usage on the web.
+    </p>
+
+    <h2>Profile List requests</h2>
+    <p>
+      Almost all uses of the library fetch this list prior to requesting specific assets, so it serves as a rough
+      proxy for overall library usage.
+    </p>
+
+    <canvas id='profileListChart'></canvas>
+
+    <h2>Profile requests</h2>
+    <p>
+      Individual profiles are typically requested once a page has positively identified the input device(s) in use and
+      the page either wants to display the appropriate models for the controller or use the profile's layout data to
+      map their controls. It should be noted that only devices with appropriate assets in the repository will show up
+      in this list, and some devices will fall back to a similar device or earlier version of the same device if an
+      appropriate profile is not available, so these numbers <i>should not</i> be seen as an accurate count of usage
+      of any individual device.
+    </p>
+
+    <canvas id='profilesChart'></canvas>
+
+    <canvas id='profilesPieChart'></canvas>
+
+    <script>
+      const JSDELIVR_API_ROOT = 'https://data.jsdelivr.com/v1/package/npm/@webxr-input-profiles/assets'; //@1.0.0/stats';
+
+      const profileListCtx = document.getElementById('profileListChart').getContext('2d');
+      const profilesCtx = document.getElementById('profilesChart').getContext('2d');
+      const profilesPieCtx = document.getElementById('profilesPieChart').getContext('2d');
+
+      async function processVersions() {
+        let response = await fetch(JSDELIVR_API_ROOT);
+        let versionJson = await response.json();
+
+        let stats = {
+          profileList: {
+            dates: {}
+          },
+          profiles: {}
+        };
+
+        let statPromises = [];
+        for (let version of versionJson.versions) {
+          statPromises.push(processVersionStats(version, stats));
+        }
+        await Promise.all(statPromises);
+
+        // Sort the stats by total use and group the bottom profiles into an "other" profile.
+        const totals = [];
+        for(let key in stats.profiles) {
+          totals.push(stats.profiles[key].total);
+        }
+        totals.sort((a, b) => { return b - a; });
+        stats.boundaryTotal = totals.length > 10 ? totals[9] : totals[totals.length];
+
+        processStats(stats);
+      }
+
+      async function processVersionStats(version, stats) {
+        let response = await fetch(`${JSDELIVR_API_ROOT}@${version}/stats`);
+        let statsJson = await response.json();
+
+        let profileListStats = statsJson.files['/dist/profiles/profilesList.json'];
+
+        if (!profileListStats) {
+          return;
+        }
+
+        for (let date in profileListStats.dates) {
+          if (!stats.profileList.dates[date]) {
+            stats.profileList.dates[date] = 0;
+          }
+          stats.profileList.dates[date] += profileListStats.dates[date];
+        }
+
+        for(let key in statsJson.files) {
+          if(/.json$/.test(key) && key != '/dist/profiles/profilesList.json') {
+            let profile = statsJson.files[key];
+            let total = profile.total;
+            if (total == 0) continue;
+
+            let label = key.replace('/dist/profiles/', '').replace('/profile.json', '');
+            if (!stats.profiles[label]) {
+              stats.profiles[label] = {
+                total: 0,
+                dates: {}
+              };
+            }
+            stats.profiles[label].total += total;
+
+            for (let date in profile.dates) {
+              if (!stats.profiles[label].dates[date]) {
+                stats.profiles[label].dates[date] = 0;
+              }
+              stats.profiles[label].dates[date] += profile.dates[date];
+            }
+          }
+        }
+      }
+
+      function processStats(stats) {
+        let dateLabels = Object.keys(stats.profileList.dates);
+
+        let profileListChart = new Chart(profileListCtx, {
+            type: 'line',
+            data: {
+                labels: dateLabels,
+                datasets: [{
+                    label: 'Profile List Requests',
+                    data: Object.values(stats.profileList.dates)
+                }]
+            },
+        });
+
+        let backgroundColors = [
+          'hsl(0, 75%, 50%)',
+          'hsl(36, 75%, 50%)',
+          'hsl(72, 75%, 50%)',
+          'hsl(108, 75%, 50%)',
+          'hsl(144, 75%, 50%)',
+          'hsl(180, 75%, 50%)',
+          'hsl(216, 75%, 50%)',
+          'hsl(252, 75%, 50%)',
+          'hsl(288, 75%, 50%)',
+          'hsl(324, 75%, 50%)',
+          'rgb(201, 203, 207)', // grey
+        ];
+
+        let profileLabels = [];
+        let profileTotals = [];
+        let profileDatasets = [];
+        let colorIndex = 0;
+
+        let otherTotal = 0;
+        let otherDates = {};
+
+        for(let key in stats.profiles) {
+          let profile = stats.profiles[key];
+
+          // Bucket the value in with the "Other" category if it's not in the top 10.
+          if (profile.total < stats.boundaryTotal) {
+            otherTotal += profile.total;
+            for (let date in profile.dates) {
+              if (!otherDates[date]) {
+                otherDates[date] = 0;
+              }
+              otherDates[date] += profile.dates[date];
+            }
+            continue;
+          }
+          profileLabels.push(key);
+          profileTotals.push(profile.total);
+
+          let color = backgroundColors[colorIndex++ % backgroundColors.length];
+          profileDatasets.push({
+            label: key,
+            data: Object.values(profile.dates),
+            backgroundColor: color,
+            borderColor: color,
+          });
+        }
+
+        if (otherTotal > 0) {
+          profileLabels.push('Other');
+          profileTotals.push(otherTotal);
+          profileDatasets.push({
+            label: 'Other',
+            data: Object.values(otherDates),
+            backgroundColor: 'rgb(201, 203, 207)',
+            borderColor: 'rgb(201, 203, 207)',
+          });
+        }
+
+        let profilesChart = new Chart(profilesCtx, {
+            type: 'line',
+            data: {
+                labels: dateLabels,
+                datasets: profileDatasets
+            },
+        });
+
+        let profilesPieChart = new Chart(profilesPieCtx, {
+            type: 'doughnut',
+            data: {
+                labels: profileLabels,
+                datasets: [{
+                  data: profileTotals,
+                  backgroundColor: backgroundColors
+                }]
+            },
+        });
+      }
+
+      processVersions();
+    </script>
+  </body>
+</html>
